@@ -19,6 +19,7 @@
 
   <!-- CSS utama -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/card-generator.css">
 </head>
 
 <body>
@@ -134,49 +135,155 @@
       </div>
     </section>
 
-    <section class="insight-section">
-      <div class="container insight-layout">
-        <div class="insight-copy">
-          <p class="eyebrow">BAGIKAN PEMAHAMAN</p>
-
-          <h2>Data yang jelas<br>layak <span>dibagikan.</span></h2>
-
-          <p>
-            Buat kartu insight dengan fakta, periode, dan sumber data yang jelas. Bagikan agar lebih banyak warga mengenal informasi publik Jakarta.
+    <!-- =========================================================================
+         PEMBUAT KARTU INSIGHT (PRD R6, R8: 5 DESAIN KARTU 3:4 & KONFIGURASI)
+         ========================================================================= -->
+    <section class="card-section-wrapper" id="kartu">
+      <div class="container">
+        <div class="section-heading" style="margin-bottom: 2.25rem;">
+          <div>
+            <p class="eyebrow">BAGIKAN PEMAHAMAN • CORONG TRANSPARANSI</p>
+            <h2>Pembuat Kartu Insight <span>paJAK-Kita</span></h2>
+          </div>
+          <p class="section-intro">
+            Buat dan bagikan kartu fakta pajak daerah Jakarta dengan nama dan wilayah pilihanmu. Didesain vertikal rasio 3:4 khusus untuk status media sosial, diproses 100% di browser tanpa merekam privasimu.
           </p>
-
-          <a class="button button-primary" href="#kartu">
-            Lihat Pembuat Kartu <span aria-hidden="true">→</span>
-          </a>
         </div>
 
-        <div class="insight-preview" id="kartu">
-          <div class="preview-topline">
-            <span>paJAK-Kita / INSIGHT</span>
-            <span class="preview-mark">01</span>
+        <div class="card-generator-grid">
+          <!-- Kolom Kiri: Konfigurasi Kartu -->
+          <div class="card-config-box">
+            <h3 class="card-config-title">
+              Konfigurasi Kartu
+            </h3>
+
+            <!-- Form: Nama Lengkap / Panggilan -->
+            <div class="card-config-group">
+              <label for="card-input-name" class="card-config-label">
+                Nama Lengkap / Panggilan
+              </label>
+              <input
+                type="text"
+                id="card-input-name"
+                class="card-config-input"
+                value="Raihan"
+                placeholder="Masukkan namamu..."
+                maxlength="35"
+              />
+            </div>
+
+            <!-- Form: Wilayah Domisili -->
+            <div class="card-config-group">
+              <label for="card-input-region" class="card-config-label">
+                Wilayah Domisili (Kota Administrasi)
+              </label>
+              <select id="card-input-region" class="card-config-select">
+                <option value="Jakarta Selatan" selected>Jakarta Selatan</option>
+                <option value="Jakarta Pusat">Jakarta Pusat</option>
+                <option value="Jakarta Barat">Jakarta Barat</option>
+                <option value="Jakarta Timur">Jakarta Timur</option>
+                <option value="Jakarta Utara">Jakarta Utara</option>
+                <option value="Kepulauan Seribu">Kepulauan Seribu</option>
+                <option value="Seluruh DKI Jakarta">Seluruh DKI Jakarta (Belanja)</option>
+                <option value="Semua Wilayah">Semua Wilayah (Tampilkan Semua)</option>
+              </select>
+            </div>
+
+            <!-- Form: Pilihan Fakta Insight -->
+            <div class="card-config-group">
+              <label for="card-insight-select" class="card-config-label">
+                Fakta &amp; Angka Insight
+              </label>
+              <select id="card-insight-select" class="card-config-select">
+                <!-- Diisi otomatis oleh cardGenerator.js -->
+              </select>
+            </div>
+
+            <!-- Form: Pilihan Template Desain -->
+            <div class="card-config-group">
+              <label class="card-config-label">
+                Pilihan Template Desain (Rasio 3:4)
+              </label>
+              <div class="card-templates-list">
+                <label class="template-radio-label active">
+                  <input type="radio" name="card-template" value="sunburst" checked />
+                  <div class="template-radio-text">
+                    <strong>Koleksi Sunburst</strong>
+                    <div class="template-radio-desc">Warm Red &amp; Golden Sunburst Rays</div>
+                  </div>
+                </label>
+                <label class="template-radio-label">
+                  <input type="radio" name="card-template" value="kuning" />
+                  <div class="template-radio-text">
+                    <strong>Kuning Ceria</strong>
+                    <div class="template-radio-desc">Bright Gold &amp; Organic Red Waves</div>
+                  </div>
+                </label>
+                <label class="template-radio-label">
+                  <input type="radio" name="card-template" value="komik" />
+                  <div class="template-radio-text">
+                    <strong>Komik Pop</strong>
+                    <div class="template-radio-desc">Halftone Dots &amp; Comic Speech Bubble</div>
+                  </div>
+                </label>
+                <label class="template-radio-label">
+                  <input type="radio" name="card-template" value="split" />
+                  <div class="template-radio-text">
+                    <strong>Split Gelombang</strong>
+                    <div class="template-radio-desc">Two-tone Wave &amp; Sunburst Emblem</div>
+                  </div>
+                </label>
+                <label class="template-radio-label">
+                  <input type="radio" name="card-template" value="blob" />
+                  <div class="template-radio-text">
+                    <strong>Blob Lengkung</strong>
+                    <div class="template-radio-desc">Warm Cream &amp; Organic Betawi Blobs</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="card-actions-group">
+              <button type="button" id="card-btn-randomize" class="btn-card-action btn-card-random">
+                <span aria-hidden="true">🔄</span> Acak Ulang Fakta Insight
+              </button>
+
+              <button type="button" id="card-btn-download" class="btn-card-action btn-card-download">
+                <span aria-hidden="true">📥</span> Unduh Kartu Gambar (PNG 3:4)
+              </button>
+
+              <button type="button" id="card-btn-share" class="btn-card-action btn-card-share">
+                <span aria-hidden="true">🔗</span> Bagikan ke Media Sosial
+              </button>
+            </div>
+
+            <!-- Privasi Terjamin (R8) -->
+            <div class="card-privacy-badge">
+              <span aria-hidden="true">🔒</span>
+              <strong>Privasi Terjamin (R8):</strong> Nama dan wilayah Anda diproses 100% di peramban browser perangkat Anda. Tidak ada data pribadi yang dikirim atau disimpan di server mana pun.
+            </div>
           </div>
 
-          <img
-            src="assets/maskot-ondi/ondi-03-menjelaskan-data.png"
-            alt="Ondi sedang menjelaskan data"
-            class="preview-ondi"
-          >
+          <!-- Kolom Kanan: Pratinjau Langsung Kartu -->
+          <div class="card-preview-column">
+            <div class="card-preview-header">
+              PRATINJAU LANGSUNG KARTU (RASIO 3:4 VERTIKAL)
+            </div>
 
-          <p class="preview-label">PAHAMI DATA PUBLIK</p>
+            <div class="card-preview-viewport-frame">
+              <div class="card-preview-viewport" id="card-preview-viewport">
+                <div class="card-preview-scale-wrapper" id="card-preview-scale-wrapper">
+                  <div id="card-mount-point">
+                    <!-- Dimuat secara dinamis oleh cardGenerator.js -->
+                  </div>
+                </div>
+              </div>
 
-          <h3>Angka yang bermakna dimulai dari sumber yang jelas.</h3>
-
-          <div class="preview-footer">
-            <span>Sumber: akan dicantumkan dari dataset terverifikasi</span>
-            <span class="mini-logo">paJAK-Kita</span>
-          </div>
-
-          <!-- Aset kain Betawi di bagian bawah kartu (Tanpa animasi) -->
-          <div class="preview-pattern" aria-hidden="true">
-            <div 
-              class="motif-pattern" 
-              style="background-image: url('assets/motifs/kain-betawi-strip.svg');"
-            ></div>
+              <div class="card-preview-note">
+                Format siap dibagikan ke Instagram Story, WhatsApp Status, X (Twitter), dan LinkedIn.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -258,5 +365,8 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/htmlToImage.js"></script>
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/cardGenerator.js?v=3.1"></script>
 </body>
 </html>
